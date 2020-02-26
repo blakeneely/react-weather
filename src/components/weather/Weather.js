@@ -10,12 +10,12 @@ const Weather = (props) => {
                 <h5 className="py-4">
                     <i className="wi wi-day-sunny display-1"></i>
                 </h5>
-                <h1 className="py-2">52&deg;</h1>
+                <h1 className="py-2">{props.temp}&deg;</h1>
 
                 {/* Show high and low temp */}
-                {highLowTemp(24, 19)}
+                {highLowTemp(props.temp_high, props.temp_low)}
 
-                <h4 className="py-4">Light Rain</h4>
+                <h4 className="py-4">{props.description}</h4>
             </div> 
         </div>
     );
