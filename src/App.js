@@ -1,5 +1,6 @@
 import React from 'react';
 import Weather from './components/weather/Weather'
+import Form from './components/form/Form'
 
 import './App.css';
 import 'weather-icons/css/weather-icons.css'
@@ -88,6 +89,7 @@ class App extends React.Component {
   render(){
     return(
       <div className='App'>
+        <Form />
       <Weather 
         city={this.state.city} 
         country={this.state.country}
