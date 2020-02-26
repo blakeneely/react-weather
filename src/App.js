@@ -22,6 +22,44 @@ class App extends React.Component {
       error: false
     };
     this.getWeather();
+    
+    this.weatherIcon = {
+      thunderstorm:'wi-thunderstorm',
+      drizzle: 'wi-sleet',
+      rain: 'wi-storm-showers',
+      snow: 'wi-snow',
+      atmosphere: 'wi-fog',
+      clear: 'wi-day-sunny',
+      clouds: 'wi-day-fog'
+    }
+  }
+
+  get_WeatherIcon(icons, rangeId) {
+    switch(true){
+      case rangeId >= 200 && rangeId <= 232:
+        this.setState({icon:this.weatherIcon.thunderstorm})
+        break;
+      case rangeId >= 300 && rangeId <= 321:
+        this.setState({icon:this.weatherIcon.drizzle})
+        break;
+      case rangeId >= 500 && rangeId <= 531:
+        this.setState({icon:this.weatherIcon.rain})
+        break;
+      case rangeId >= 600 && rangeId <= 622:
+        this.setState({icon:this.weatherIcon.snow})
+        break;
+      case rangeId >= 701 && rangeId <= 781:
+        this.setState({icon:this.weatherIcon.atmosphere})
+        break;
+      case rangeId === 800:
+        this.setState({icon:this.weatherIcon.clear})
+        break;
+      case rangeId >= 801 && rangeId <= 804:
+        this.setState({icon:this.weatherIcon.clouds})
+        break;
+      default:
+        this.setState({icon:this.weatherIcon.clouds})
+    }
   }
 
   convertTemp(temp){
@@ -43,7 +81,8 @@ class App extends React.Component {
       temp_high: this.convertTemp(response.main.temp_max),
       temp_low: this.convertTemp(response.main.temp_min),
       description: response.weather[0].description,
-    })
+    });
+    this.get_WeatherIcon(this.weatherIcon, response.weather[0].id)
   }
 
   render(){
@@ -56,6 +95,7 @@ class App extends React.Component {
         temp_high={this.state.temp_high}
         temp_low={this.state.temp_low}
         description={this.state.description}
+        weatherIcon={this.state.icon}
       />
     </div>
     )
