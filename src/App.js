@@ -2,9 +2,9 @@ import React from 'react';
 import Weather from './components/weather/Weather'
 import Form from './components/form/Form'
 
-import './App.css';
 import 'weather-icons/css/weather-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css';
 
 const API_key = 'a1e3b3c298370700698105fb435bbe64';
 

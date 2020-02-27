@@ -20,3 +20,14 @@ form input
 .container::-webkit-input-placeholder {
     color: white !important;
 }
+
+.btn {
+    border-color: yellowgreen !important;
+    border-radius: 40px !important;
+    color: white !important;
+}
+
+.btn:hover,
+.btn-focus {
+    background-color: yellowgreen !important;
+}
