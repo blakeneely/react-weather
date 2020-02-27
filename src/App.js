@@ -22,7 +22,6 @@ class App extends React.Component {
       description: '',
       error: false
     };
-    this.getWeather();
     
     this.weatherIcon = {
       thunderstorm:'wi-thunderstorm',
@@ -68,37 +67,51 @@ class App extends React.Component {
     return newTemp;
   }
 
-  getWeather = async() => {
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${API_key}`);
+  getWeather = async(e) => {
 
-    const response = await api_call.json()
+    e.preventDefault();
 
-    console.log(response)
+    const city = e.target.elements.city.value;
+    const country = e.target.elements.country.value;
 
-    this.setState({
-      city: response.name,
-      country: response.sys.country,
-      temp: this.convertTemp(response.main.temp),
-      temp_high: this.convertTemp(response.main.temp_max),
-      temp_low: this.convertTemp(response.main.temp_min),
-      description: response.weather[0].description,
-    });
-    this.get_WeatherIcon(this.weatherIcon, response.weather[0].id)
-  }
+    if(city && country) {
+      const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_key}`);
+
+      const response = await api_call.json()
+  
+      console.log(response)
+  
+      this.setState({
+        city: `${response.name}, ${response.sys.country}`,
+        temp: this.convertTemp(response.main.temp),
+        temp_high: this.convertTemp(response.main.temp_max),
+        temp_low: this.convertTemp(response.main.temp_min),
+        description: response.weather[0].description,
+        error: false
+      });
+      this.get_WeatherIcon(this.weatherIcon, response.weather[0].id)
+  
+    }else {
+      this.setState({error: true})
+    }
+  };
 
   render(){
     return(
       <div className='App'>
-        <Form />
-      <Weather 
-        city={this.state.city} 
-        country={this.state.country}
-        temp={this.state.temp}
-        temp_high={this.state.temp_high}
-        temp_low={this.state.temp_low}
-        description={this.state.description}
-        weatherIcon={this.state.icon}
-      />
+        <Form 
+          loadweather={this.getWeather}
+          error={this.state.error}
+        />
+        <Weather 
+          city={this.state.city} 
+          country={this.state.country}
+          temp={this.state.temp}
+          temp_high={this.state.temp_high}
+          temp_low={this.state.temp_low}
+          description={this.state.description}
+          weatherIcon={this.state.icon}
+        />
     </div>
     )
   };
