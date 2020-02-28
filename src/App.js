@@ -1,9 +1,9 @@
 import React from 'react';
-import Weather from './components/weather/Weather'
-import Form from './components/form/Form'
+import Weather from './components/weather/Weather';
+import Form from './components/form/Form';
 
-import 'weather-icons/css/weather-icons.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'weather-icons/css/weather-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const API_key = 'a1e3b3c298370700698105fb435bbe64';
@@ -31,8 +31,8 @@ class App extends React.Component {
       atmosphere: 'wi-fog',
       clear: 'wi-day-sunny',
       clouds: 'wi-day-fog'
-    }
-  }
+    };
+  };
 
   get_WeatherIcon(icons, rangeId) {
     switch(true){
@@ -59,13 +59,13 @@ class App extends React.Component {
         break;
       default:
         this.setState({icon:this.weatherIcon.clouds})
-    }
-  }
+    };
+  };
 
   convertTemp(temp){
     let newTemp =  Math.floor((temp - 273.15)*1.8) + 32 
     return newTemp;
-  }
+  };
 
   getWeather = async(e) => {
 
@@ -93,7 +93,7 @@ class App extends React.Component {
   
     }else {
       this.setState({error: true})
-    }
+    };
   };
 
   render(){

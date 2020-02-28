@@ -13,7 +13,8 @@ form input[name='country'] {
 
 form input:focus {
     background-color: transparent !important;
-    box-shadow: none !important ;
+    box-shadow: none !important;
+    border-bottom: 2px solid rgb(50, 205, 184) !important;
 }
 
 form input
@@ -22,12 +23,15 @@ form input
 }
 
 .btn {
-    border-color: yellowgreen !important;
+    border-color: rgb(50, 205, 184) !important;
     border-radius: 40px !important;
     color: white !important;
 }
 
 .btn:hover,
-.btn-focus {
-    background-color: yellowgreen !important;
+.btn:focus,
+.btn:active {
+    background-color: rgb(50, 205, 184) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 .1rem rgb(56, 231, 208) !important;
 }
