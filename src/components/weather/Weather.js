@@ -10,7 +10,7 @@ const Weather = (props) => {
                     <i className={`wi ${props.weatherIcon} display-1`} />
                 </h5>
 
-                <h4 className="py-4 capitalize">{props.description}</h4>
+                <h4 className="pb-4 capitalize">{props.description}</h4>
 
                 {props.temp ? (<h1 className="py-4">{props.temp}&deg;</h1>) : null}
 
